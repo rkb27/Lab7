@@ -17,23 +17,15 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
 
    int counter = 0;
    int n = 1;  //current number of intervals
-   while (                     )
+   while (counter <= level)
    {
       //DO THIS
       //obtain the required number of trapezoid evaluations depending on the number of levels requested
       //put all of the level 0 results on the q1
-
-
-
-
-
-
-
-
-
-
-      n = 2*n;  //double the number of intervals
-      counter++;
+	db = new Double(trap(f, n, a, b);
+	q1->enqueue(db);
+    n = 2*n;  //double the number of intervals
+    counter++;
    }
 
    //q1 now has all of the level 0 integration results
@@ -45,12 +37,12 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
    //the total number of executions of the loop is ??
 
    //DO THIS
-   int iterations =                //can be precomputed
+   int iterations = (level * (level+1))/ 2 //can be precomputed
    while (iterations > 0)
    {
       //DO THIS
       //use the algorithm described in the lab to improve the accuracy of your level 0 results
-
+	  factor = pow(4,
 
 
 
