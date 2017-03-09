@@ -11,8 +11,8 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
 {
    Double* db;  //use this variable to place and retrieve values on the queue
    
-   QueueLinked<Double>* q1 =
-   QueueLinked<Double>* q2 =
+   QueueLinked<Double>* q1 = new QueueLinked<Double>(); //creating queues of type double
+   QueueLinked<Double>* q2 = new QueueLinked<Double>();
 
 
    int counter = 0;
