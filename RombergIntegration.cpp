@@ -22,7 +22,8 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
       //DO THIS
       //obtain the required number of trapezoid evaluations depending on the number of levels requested
       //put all of the level 0 results on the q1
-	db = new Double(trap(f, n, a, b);
+	double answer = RecursiveIntegration::romberg(f, level, a, b);  //trap was not recognized
+      	db = new Double(answer);
 	q1->enqueue(db);
     n = 2*n;  //double the number of intervals
     counter++;
