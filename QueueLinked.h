@@ -114,14 +114,16 @@ T* QueueLinked<T>::dequeue()
 	}
 	else if (sze == 1)
     {  
-		item = back->getItem(back->getNext());
+		item = back->getItem();
 		back->setNext(NULL);
-		back->NULL;
+		back = NULL;  //previously back -> NULL;
+		sze = 0; //update sze
     }
 	else
 	{
-      item = back->getItem(back->getNext());
-	  back = back->getNext();;
+      item = back->getItem();
+	  back = back->getNext(); //was double semicolon here
+		sze--; //update sze
 	}
     return item;
 }
