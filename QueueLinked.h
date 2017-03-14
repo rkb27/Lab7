@@ -114,14 +114,14 @@ T* QueueLinked<T>::dequeue()
 	}
 	else if (sze == 1)
     {  
-		item = back->getItem(back->getNext());
+		item = back->getNext()->getItem();
 		back->setNext(NULL);
-		back->NULL;
+		//back->NULL
     }
 	else
 	{
-      item = back->getItem(back->getNext());
-	  back = back->getNext();;
+      item = back->getNext()->getItem();
+	  back = back->getNext();
 	}
     return item;
 }

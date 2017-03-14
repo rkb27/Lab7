@@ -10,7 +10,7 @@ using CSC2110::Double;
 double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double b, int level)
 {
    Double* db;  //use this variable to place and retrieve values on the queue
-   Doulbe* dbjr;
+   Double* dbjr;
 	
    QueueLinked<Double>* q1 = new QueueLinked<Double>(); //creating queues of type double
    QueueLinked<Double>* q2 = new QueueLinked<Double>();
@@ -26,7 +26,7 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
       //DO THIS
       //obtain the required number of trapezoid evaluations depending on the number of levels requested
       //put all of the level 0 results on the q1
-	double answer = RecursiveIntegration::romberg(f, level, a, b);  //trap was not recognized
+	double answer = RecursiveIntegration::romberg(f, level, a, b);  //Should perform the trap evaluations.
       	db = new Double(answer);
 	q1->enqueue(db);
     n = 2*n;  //double the number of intervals
@@ -43,8 +43,8 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
    
    double results;
    //DO THIS
-   int iterations = (level * (level+1))/ 2 //can be precomputed
-   while (iterations > 0)
+   int iterations = (level * (level+1))/ 2; //can be precomputed
+   while(iterations > 0)
    {
       //DO THIS
       //use the algorithm described in the lab to improve the accuracy of your level 0 results
@@ -55,10 +55,11 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
 		iL = q1->dequeue();
 		iM = q1->peek();
 		   
-		results = ((factor * iM->getValue()) - iL-getValue())/(factor - 1);
+		results = ((factor * iM->getValue()) - iL->getValue())/(factor - 1);
 		dbjr = new Double(results);
 		q2->enqueue(dbjr);
 	   }
+   }
 	  
    int q2sz = q2->size();
    q1->dequeueAll();
@@ -68,18 +69,15 @@ double RombergIntegration::accurateRomberg(MultiVarFunction* f, double a, double
 	   q1->enqueue(dbjr);
    }
 
-      power++;
-      iterations--;
-   }
-
    //obtain the final answer
    db = q1->dequeue();
    double result = db->getValue();  
-   delete db;
-   delete dbjr;
+   //Need [] to delete the double array, regular delete causes compiler to complain
+   delete[] db;
+   delete[] dbjr;
 
-   delete q1;
-   delete q2;
+   delete[] q1;
+   delete[] q2;
 
    return result;
 }
